@@ -1,0 +1,654 @@
+:root {
+    --primary-color: #804d58;       /* Deep warm burgundy/wine */
+    --primary-hover: #693c47;       /* Darker burgundy for hover */
+    --accent-color: #bfa0a6;        /* Dust rose/beige accent */
+    --bg-cream: #faf5f6;            /* Soft warm cream background */
+    --text-dark: #4a3337;           /* Elegant dark text */
+    --text-light: #ffffff;          /* White text */
+    --border-color: #e5d7da;        /* Soft borders */
+}
+
+body {
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+    font-family: 'Playfair Display', 'Segoe UI', sans-serif;
+}
+
+/* Global Elements Overrides for the Premium Theme */
+
+/* Header Override */
+nav, .fila-superior, .fila-inferior {
+    background-color: var(--primary-color) !important;
+    color: var(--text-light) !important;
+}
+
+.fila-superior a, .fila-superior i, .fila-superior span,
+.menu-nav li a, .menu-nav li span {
+    color: var(--text-light) !important;
+}
+
+.buscador input[type="text"] {
+    background-color: #ffffff !important;
+    color: var(--text-dark) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.buscador .boton-buscar {
+    background-color: var(--accent-color) !important;
+    color: var(--primary-color) !important;
+}
+
+.dropdown-menu {
+    background-color: var(--primary-color) !important;
+    border: 1px solid var(--primary-hover) !important;
+}
+
+.dropdown-menu li a {
+    color: var(--text-light) !important;
+}
+
+.dropdown-menu li a:hover {
+    background-color: var(--primary-hover) !important;
+}
+
+/* Footer Override */
+footer, #footer1, footer .column {
+    background-color: var(--primary-color) !important;
+    color: var(--text-light) !important;
+}
+
+footer {
+    border-top: 2px solid var(--primary-hover) !important;
+}
+
+#footer1 {
+    border-bottom: 2px solid var(--primary-hover) !important;
+}
+
+footer h3 {
+    border-bottom: 1px solid var(--accent-color) !important;
+}
+
+footer h3, footer a, footer p, footer span, #derechos,
+footer .column, footer .column a, footer .column p, footer .column h3, footer .column span, footer .column li {
+    color: var(--text-light) !important;
+}
+
+footer a:hover, footer .column a:hover {
+    color: var(--accent-color) !important;
+}
+
+/* Premium Product Card Redesign (Puma Style) */
+.producto {
+    background: #ffffff !important;
+    border: 1px solid #e5d7da !important;
+    border-radius: 16px !important;
+    padding: 0 !important; /* Remove inner padding so image fills top */
+    overflow: hidden !important;
+    box-shadow: 0 6px 18px rgba(128, 77, 88, 0.04) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    text-decoration: none !important;
+}
+
+.producto:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 12px 30px rgba(128, 77, 88, 0.08) !important;
+}
+
+/* Image wrapper */
+.product-image-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    background-color: #ebebeb !important; /* Soft grey background */
+    padding-top: 100% !important; /* 1:1 Aspect ratio square */
+}
+
+.product-image-wrapper img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.5s ease !important;
+}
+
+.producto:hover .product-image-wrapper img {
+    transform: scale(1.04) !important;
+}
+
+/* Wishlist Heart Icon */
+.product-heart-btn {
+    position: absolute !important;
+    top: 15px !important;
+    right: 15px !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #804d58 !important;
+    font-size: 15px !important;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08) !important;
+    transition: background 0.3s, color 0.3s !important;
+    z-index: 10 !important;
+}
+
+.product-heart-btn:hover {
+    background: #804d58 !important;
+    color: #ffffff !important;
+}
+
+/* Badges */
+.product-badge {
+    position: absolute !important;
+    top: 15px !important;
+    left: 15px !important;
+    background-color: #c70039 !important; /* Red discount */
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: bold !important;
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+    text-transform: uppercase !important;
+    z-index: 10 !important;
+}
+
+.product-badge.new {
+    background-color: #804d58 !important; /* Gold/burgundy for new */
+}
+
+/* Info container */
+.product-info-wrapper {
+    padding: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    flex-grow: 1 !important;
+}
+
+.product-colors-info {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #888888 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    text-align: left !important;
+}
+
+.product-title {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: #4a3337 !important;
+    margin: 0 !important;
+    line-height: 1.4 !important;
+    font-family: 'Playfair Display', serif !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    height: 42px !important;
+    text-align: left !important;
+}
+
+/* Price row */
+.product-price-row {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 10px !important;
+    margin-top: 4px !important;
+}
+
+.product-price-sale {
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    color: #c70039 !important; /* Red sale price */
+}
+
+.product-price-original {
+    font-size: 13.5px !important;
+    color: #999999 !important;
+    text-decoration: line-through !important;
+}
+
+/* Icons row */
+.product-card-icons {
+    display: flex !important;
+    gap: 12px !important;
+    margin-top: 4px !important;
+    font-size: 11px !important;
+    color: #666666 !important;
+}
+
+.card-icon-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+}
+
+.card-icon-item i {
+    color: #804d58 !important;
+}
+
+/* Coupon info */
+.product-card-coupon {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    color: #278a46 !important; /* Soft green */
+    margin-top: 4px !important;
+    background-color: #eaf6ec !important;
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+    display: inline-block !important;
+    width: fit-content !important;
+}
+}
+
+.producto p {
+    color: var(--primary-hover) !important;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Buttons */
+button, .btn, #btnAgregarCarrito {
+    background-color: var(--primary-color) !important;
+    color: var(--text-light) !important;
+    border-radius: 8px !important;
+    transition: background-color 0.3s !important;
+}
+
+button:hover, .btn:hover, #btnAgregarCarrito:hover {
+    background-color: var(--primary-hover) !important;
+}
+
+/* Detail page selectors */
+.precio-opcion.seleccionado {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--text-light) !important;
+}
+
+.precio-opcion {
+    border-color: var(--border-color) !important;
+    color: var(--primary-color) !important;
+    background-color: #ffffff !important;
+}
+
+/* ==========================================================================
+   FORM GENERAL STYLING OVERRIDES (VERTICAL, BLOCK, SPACIOUS)
+   ========================================================================== */
+.formulario {
+    max-width: 600px !important;
+    margin: 40px auto !important;
+    padding: 30px !important;
+    background: #ffffff !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 15px rgba(128, 77, 88, 0.05) !important;
+    display: block !important;
+}
+
+.formulario h2 {
+    color: var(--primary-color) !important;
+    text-align: center !important;
+    margin-bottom: 20px !important;
+    font-family: 'Playfair Display', serif !important;
+    font-size: 26px !important;
+}
+
+.formulario p {
+    text-align: center !important;
+    color: #666 !important;
+    margin-bottom: 20px !important;
+    font-size: 15px !important;
+}
+
+.formulario form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+}
+
+.formulario label {
+    font-weight: 600 !important;
+    color: var(--text-dark) !important;
+    display: block !important;
+    margin-bottom: 5px !important;
+    text-align: left !important;
+}
+
+.formulario input, .formulario select, .formulario textarea {
+    width: 100% !important;
+    padding: 12px !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    font-size: 15px !important;
+    background-color: #faf5f6 !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    margin-bottom: 15px !important;
+    color: var(--text-dark) !important;
+}
+
+.formulario input:focus, .formulario select:focus, .formulario textarea:focus {
+    border-color: var(--primary-color) !important;
+    outline: none !important;
+    background-color: #ffffff !important;
+}
+
+.formulario button, .formulario button[type="submit"] {
+    width: 100% !important;
+    padding: 14px !important;
+    background-color: var(--primary-color) !important;
+    color: var(--text-light) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    margin-top: 15px !important;
+    display: block !important;
+    transition: background-color 0.3s !important;
+}
+
+.formulario button:hover, .formulario button[type="submit"]:hover {
+    background-color: var(--primary-hover) !important;
+}
+
+/* ==========================================================================
+   MODERN CLEAN FOOTER STYLING
+   ========================================================================== */
+.clean-footer {
+    background-color: var(--primary-color) !important;
+    color: var(--text-light) !important;
+    padding: 60px 0 30px 0 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    font-family: 'Montserrat', 'Segoe UI', sans-serif !important;
+    display: block !important;
+}
+
+.clean-footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1.5fr 1.2fr;
+    gap: 30px;
+    padding: 0 20px 40px 20px;
+}
+
+.clean-footer-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.clean-footer-col h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-light) !important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+}
+
+.clean-footer-col ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.clean-footer-col ul li {
+    margin-bottom: 12px !important;
+    list-style-type: none !important;
+}
+
+.clean-footer-col ul li a {
+    color: rgba(255, 255, 255, 0.75) !important;
+    text-decoration: none !important;
+    font-size: 13.5px !important;
+    transition: color 0.3s !important;
+    font-weight: 400 !important;
+}
+
+.clean-footer-col ul li a:hover {
+    color: var(--accent-color) !important;
+    font-weight: 400 !important;
+}
+
+.clean-footer-col p {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    color: rgba(255, 255, 255, 0.75) !important;
+    margin: 0 0 12px 0 !important;
+}
+
+/* White Badge style */
+.libro-reclamaciones-badge {
+    background-color: #ffffff !important;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    border: 1px solid #e5d7da;
+    text-align: center;
+    max-width: 170px;
+    width: 100%;
+    box-sizing: border-box;
+    align-self: flex-start;
+}
+
+.libro-reclamaciones-badge:hover {
+    transform: translateY(-3px);
+}
+
+.clean-footer-divider {
+    border: 0 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    max-width: 1200px;
+    margin: 0 auto !important;
+}
+
+.clean-footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 20px 0 20px;
+}
+
+.clean-footer-bottom p {
+    font-size: 13px !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    margin: 0 !important;
+    font-weight: 400 !important;
+}
+
+.clean-footer-social {
+    display: flex;
+    gap: 20px;
+}
+
+.clean-footer-social a img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.clean-footer-social a:hover img {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .clean-footer-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        text-align: center;
+    }
+    .clean-footer-col {
+        align-items: center;
+    }
+    .libro-reclamaciones-badge {
+        align-self: center;
+    }
+    .clean-footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   LOGIN MODAL SHADING OVERLAY
+   ========================================================================== */
+.login-modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    z-index: 10000 !important;
+    display: none; /* Hide by default */
+    justify-content: center !important;
+    align-items: center !important;
+    backdrop-filter: blur(4px) !important;
+    animation: fadeIn 0.3s ease-out !important;
+}
+
+.login-modal-overlay.show {
+    display: flex !important; /* Only show when class .show is added */
+}
+
+.login-modal-card {
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    padding: 35px !important;
+    max-width: 420px !important;
+    width: 90% !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+    animation: slideUp 0.3s ease-out !important;
+}
+
+.login-modal-close {
+    position: absolute !important;
+    top: 15px !important;
+    right: 20px !important;
+    background: none !important;
+    border: none !important;
+    font-size: 28px !important;
+    color: #888 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    transition: color 0.3s !important;
+}
+
+.login-modal-close:hover {
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+}
+
+.login-modal-header {
+    text-align: center !important;
+    margin-bottom: 25px !important;
+}
+
+.login-modal-logo {
+    max-height: 55px !important;
+    width: auto !important;
+    margin-bottom: 12px !important;
+}
+
+.login-modal-header h3 {
+    font-family: 'Playfair Display', serif !important;
+    color: var(--primary-color) !important;
+    font-size: 22px !important;
+    margin: 0 !important;
+}
+
+.login-modal-field {
+    margin-bottom: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.login-modal-field label {
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: var(--text-dark) !important;
+    margin-bottom: 6px !important;
+    text-align: left !important;
+}
+
+.login-modal-field input {
+    padding: 12px !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    font-size: 15px !important;
+    color: var(--text-dark) !important;
+    background-color: #faf5f6 !important;
+    transition: border-color 0.3s, background-color 0.3s !important;
+}
+
+.login-modal-field input:focus {
+    border-color: var(--primary-color) !important;
+    background-color: #ffffff !important;
+    outline: none !important;
+}
+
+.login-modal-submit-btn {
+    width: 100% !important;
+    padding: 14px !important;
+    background-color: var(--primary-color) !important;
+    color: var(--text-light) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    margin-top: 10px !important;
+    transition: background-color 0.3s !important;
+}
+
+.login-modal-submit-btn:hover {
+    background-color: var(--primary-hover) !important;
+}
+
+.login-modal-footer {
+    text-align: center !important;
+    margin-top: 20px !important;
+    font-size: 14px !important;
+}
+
+.login-modal-footer a {
+    color: var(--primary-color) !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+}
+
+.login-modal-footer a:hover {
+    text-decoration: underline !important;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

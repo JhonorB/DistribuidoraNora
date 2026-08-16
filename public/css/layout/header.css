@@ -1,0 +1,485 @@
+
+/* =============================
+   FILA SUPERIOR
+============================= */
+.fila-superior {
+  display: grid !important;
+  grid-template-columns: auto 1fr auto !important;
+  align-items: center !important;
+  padding: 10px 30px !important;
+  gap: 20px !important;
+  background-color: var(--primary-color) !important;
+}
+
+#logo {
+  height: 50px !important;
+  transition: transform 0.3s;
+}
+
+#logo:hover {
+  transform: scale(1.05);
+}
+
+/* Links Center Desktop */
+.nav-links-desktop-center {
+  display: flex !important;
+  list-style: none !important;
+  gap: 25px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.nav-links-desktop-center li a {
+  color: var(--text-light) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 14.5px !important;
+  transition: opacity 0.3s !important;
+  text-transform: uppercase;
+}
+
+.nav-links-desktop-center li a:hover {
+  opacity: 0.8 !important;
+}
+
+/* Right Search + Icons Container */
+.nav-right-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  justify-content: flex-end !important;
+}
+
+/* Buscador Pequeño Derecho */
+.buscador-cabecera {
+  display: flex !important;
+  align-items: center !important;
+  background-color: #faf5f6 !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 4px !important;
+  padding: 5px 12px !important;
+  width: 160px !important;
+  transition: width 0.3s ease, border-color 0.3s ease !important;
+}
+
+.buscador-cabecera:focus-within {
+  width: 210px !important;
+  background-color: #ffffff !important;
+  border-color: var(--accent-color) !important;
+}
+
+.buscador-input-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  gap: 8px !important;
+}
+
+.buscador-input-wrapper input {
+  order: 1 !important;
+  border: none !important;
+  background: transparent !important;
+  outline: none !important;
+  font-size: 12.5px !important;
+  color: var(--text-dark) !important;
+  width: 100% !important;
+}
+
+.buscador-input-wrapper i {
+  order: 2 !important;
+  border: none !important;
+  background: transparent !important;
+  cursor: pointer !important;
+  color: var(--primary-color) !important;
+  font-size: 12.5px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.boton-buscar-submit {
+  display: none !important; /* Hidden on desktop */
+}
+
+.fila-inferior {
+  display: none !important; /* Hide old menu bar on desktop */
+}
+
+/* =============================
+   ICONOS
+============================= */
+.iconos {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+}
+
+/* Iconos generales */
+.icono-usuario, .icono-carrito, .icono-hamburguesa {
+  font-size: 24px !important;
+  cursor: pointer;
+  color: var(--text-light) !important;
+  transition: 0.3s;
+}
+
+.icono-usuario:hover, .icono-carrito:hover, .icono-hamburguesa:hover {
+  color: var(--accent-color) !important;
+}
+
+/* =============================
+   MENÚ HAMBURGUESA
+============================= */
+.icono-hamburguesa {
+  display: none; /* oculto en escritorio */
+  font-size: 24px !important;
+  cursor: pointer;
+  color: var(--text-light) !important;
+  transition: 0.3s;
+}
+
+.icono-hamburguesa:hover {
+  color: var(--accent-color) !important;
+}
+
+
+/* =============================
+   MÓDULO RESPONSIVO PARA MÓVILES
+============================= */
+@media screen and (max-width: 768px) {
+  .nav-links-desktop-center {
+    display: none !important;
+  }
+  
+  .fila-inferior {
+    display: block !important;
+  }
+
+  /* FILA SUPERIOR */
+  .fila-superior {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 10px 16px !important;
+    gap: 0 !important;
+    background-color: #ffffff !important; /* White mobile header */
+    border-bottom: 1px solid #e5d7da !important;
+    position: relative !important;
+  }
+
+  .logo-container {
+    order: 2 !important; /* Put logo in center */
+    display: flex !important;
+    justify-content: center !important;
+    flex-grow: 1 !important;
+  }
+
+  #logo {
+    max-width: 100px !important;
+    height: auto !important;
+  }
+
+  .nav-right-container {
+    order: 3 !important; /* Put icons on right */
+    width: auto !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Hide search bar by default on mobile, display only when toggled */
+  .buscador-cabecera {
+    display: none !important;
+  }
+
+  .buscador-cabecera.mostrar-movil {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    position: absolute !important;
+    top: 65px !important;
+    left: 16px !important;
+    right: 16px !important;
+    width: calc(100% - 32px) !important;
+    background: #ffffff !important;
+    border: 1px solid #d2d6e4 !important;
+    border-radius: 16px !important;
+    padding: 20px !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+    z-index: 9999 !important;
+    box-sizing: border-box !important;
+  }
+
+  .buscador-cabecera.mostrar-movil .buscador-input-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    border: 2px solid #111c3e !important;
+    border-radius: 8px !important;
+    padding: 10px 14px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    gap: 10px !important;
+  }
+
+  .buscador-cabecera.mostrar-movil .buscador-input-wrapper i {
+    order: 1 !important; /* Icon on left */
+    color: #111c3e !important;
+    font-size: 18px !important;
+  }
+
+  .buscador-cabecera.mostrar-movil .buscador-input-wrapper input {
+    order: 2 !important;
+    border: none !important;
+    outline: none !important;
+    font-size: 16px !important;
+    width: 100% !important;
+    color: #111c3e !important;
+    background: transparent !important;
+  }
+
+  .buscador-cabecera.mostrar-movil .boton-buscar-submit {
+    display: block !important;
+    background-color: #111c3e !important; /* Dark navy */
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 12px 0 !important;
+    width: 100% !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+
+  /* ICONOS */
+  .iconos {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    width: auto !important;
+    padding: 0 !important;
+  }
+
+  .iconos .icono-item,
+  .iconos i {
+    font-size: 22px !important;
+    color: #111c3e !important; /* Dark navy color like mock */
+    cursor: pointer !important;
+    transition: transform 0.2s ease !important;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .iconos .icono-item:hover,
+  .iconos i:hover {
+    transform: scale(1.08) !important;
+  }
+
+  /* ICONO HAMBURGUESA */
+  .icono-hamburguesa {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    order: 1 !important;
+    font-size: 20px !important;
+    color: #111c3e !important;
+    border: 1.5px solid #d2d6e4 !important; /* Rounded square outline like Puma */
+    border-radius: 12px !important;
+    width: 42px !important;
+    height: 42px !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+    background-color: transparent !important;
+    transition: transform 0.2s ease !important;
+  }
+
+  .icono-hamburguesa i {
+    color: #111c3e !important;
+    font-size: 20px !important;
+  }
+    
+  /* MENÚ DE NAVEGACIÓN MÓVIL */
+  nav {
+    width: 100%;
+  }
+
+  .menu-nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #ffe6f0;
+    border-top: 1px solid #f8cdd9;
+    animation: fadeIn 0.3s ease-in-out;
+    z-index: 1000;
+  }
+
+  .menu-nav.show {
+    display: flex;
+  }
+
+  .menu-nav li {
+    text-align: center;
+    padding: 6px 0;
+    border-bottom: 1px solid #f4c2d7;
+    line-height: 1.2;
+    position: relative;
+  }
+
+  .menu-nav li a {
+    color: #d81b60;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    display: block;
+    padding: 6px 0;
+    transition: background-color 0.3s;
+  }
+
+  /* DROPDOWN */
+  .dropdown > a::after {
+    content: ' ▼';
+    font-size: 11px;
+  }
+
+  .dropdown-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #fff0f5;
+    padding: 4px 0;
+    width: 100%;
+    text-align: center;
+    list-style: none;
+    animation: slideDown 0.3s ease-in-out;
+  }
+  
+ .dropdown.open .dropdown-menu,
+  .dropdown-menu.show {
+    display: flex;
+  }
+  
+  
+  /* =============================
+   MENÚ USUARIO - MÓVIL
+============================= */
+.menu-usuario {
+  position: relative;
+  top: auto;
+  right: auto;
+  transform: none;
+  width: 100%;
+  display: none;
+  background: #fde4ec;
+  border: 1px solid #f8bbd0;
+  border-radius: 10px;
+  padding: 10px 0;
+  z-index: 1000;
+  text-align: center; /* Centramos el contenido */
+  font-size: 1rem; /* Misma medida para todas las letras */
+  font-family: 'Playfair Display', sans-serif; /* Fuente uniforme */
+}
+
+.menu-usuario.show {
+  display: block;
+}
+
+.menu-usuario li {
+  list-style: none; /* Eliminamos viñetas */
+}
+
+/* Enlaces y botones del menú */
+.menu-usuario li a,
+.menu-usuario li button {
+  width: 90%;
+  margin: 0.3rem auto;
+  text-align: center;
+  display: block;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid #f8bbd0;
+  background: #fde4ec;
+  color: #880e4f;
+  transition: background 0.3s ease, transform 0.2s ease;
+  font-size: 1rem;
+  font-family: 'Playfair Display', sans-serif;
+}
+
+.menu-usuario li a:hover,
+.menu-usuario li button:hover {
+  background: #f8bbd0;
+  transform: scale(1.05);
+}
+  
+/* Mensaje de bienvenida */
+.menu-usuario li p {
+  margin: 0 1rem 0.5rem;
+  font-size: 1rem;
+  color: #555; /* color base del texto */
+  line-height: 1.4;
+  font-family: 'Playfair Display', sans-serif;
+}
+  
+/* Nombre + Apellido y Distribuidora */
+.menu-usuario .nombre-usuario,
+.menu-usuario .distribuidora {
+  color: #880e4f;     /* Color especial */
+  font-weight: 700;   /* Un poco más grueso */
+}
+  
+  /* BÚSQUEDA */
+  .busqueda {
+    display: block;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .busqueda input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #f8b3c9;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+  }
+
+  .busqueda button {
+    margin-top: 8px;
+    width: 100%;
+    background-color: #f06292;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .busqueda button:hover {
+    background-color: #ec407a;
+  }
+
+  .search-modal-overlay {
+    position: fixed !important;
+    top: 65px !important; /* Starts exactly below the header */
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(255, 255, 255, 0.3) !important; /* Very soft light tint */
+    backdrop-filter: blur(6px) !important; /* Blurs the background */
+    -webkit-backdrop-filter: blur(6px) !important;
+    z-index: 9980 !important; /* Below the search popup but above content */
+  }
+
+  /* ANIMACIONES */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: scaleY(0); }
+    to { opacity: 1; transform: scaleY(1); }
+  }
+}

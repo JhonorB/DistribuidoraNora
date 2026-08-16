@@ -1,0 +1,615 @@
+/* ================================================
+   PRODUCTO DETALLE — ESTILO PUMA/PREMIUM
+   ================================================ */
+
+/* ---- Breadcrumb ---- */
+.breadcrumb-detalle {
+    font-size: 13px;
+    color: #888;
+    padding: 16px 35px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.breadcrumb-detalle a {
+    color: #555;
+    text-decoration: none;
+    font-weight: 500;
+}
+.breadcrumb-detalle a:hover { color: #111; }
+.breadcrumb-detalle span { color: #aaa; }
+.breadcrumb-detalle .current { color: #111; font-weight: 500; }
+
+/* ---- Layout principal ---- */
+.detalle {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+    padding: 24px 35px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+/* ---- Galería izquierda ---- */
+.media {
+    flex: 0 0 55%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Imagen principal grande */
+.img-principal-wrap {
+    width: 100%;
+    background: #f5f5f5;
+    border-radius: 4px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    cursor: zoom-in;
+    position: relative;
+}
+.img-principal-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.4s ease;
+}
+.img-principal-wrap:hover img { transform: scale(1.04); }
+
+/* Grid de thumbnails */
+.thumbnails-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+.thumbnail-item {
+    aspect-ratio: 1 / 1;
+    background: #f5f5f5;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s ease;
+}
+.thumbnail-item:hover { border-color: #aaa; }
+.thumbnail-item.active { border-color: #111; }
+.thumbnail-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* ---- Panel info derecho ---- */
+.info {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+}
+
+/* Nombre producto */
+.info h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 12px;
+    line-height: 1.2;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Precio */
+.precio-bloque {
+    margin-bottom: 8px;
+}
+.precio-actual {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111;
+    display: block;
+}
+.precio-cuotas {
+    font-size: 12px;
+    color: #777;
+    margin-top: 2px;
+}
+
+/* Separador */
+.divider-line {
+    height: 1px;
+    background: #e8e8e8;
+    margin: 16px 0;
+}
+
+/* Sección color */
+.seccion-color { margin-bottom: 16px; }
+.seccion-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.seccion-label .label-valor {
+    font-weight: 400;
+    color: #555;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* Thumbnails de color */
+.color-thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.color-thumb {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+    background: #f0f0f0;
+}
+.color-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.color-thumb.active { border-color: #111; }
+.color-thumb:hover { border-color: #888; }
+
+/* Colores swatch clásicos */
+.color-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    outline: 2px solid transparent;
+    transition: outline-color 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+}
+.color-swatch:hover { outline-color: #aaa; }
+.color-swatch.seleccionado {
+    border-color: #fff;
+    outline-color: #111;
+}
+.color-swatch.inactivo { opacity: 0.35; cursor: not-allowed; }
+
+/* Sección talla */
+.seccion-talla { margin-bottom: 20px; }
+.talla-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.talla-header .seccion-label { margin-bottom: 0; }
+.stock-badge {
+    font-size: 12px;
+    color: #007a4d;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.guia-tallas-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+}
+.guia-tallas-link:hover { color: #111; }
+
+/* Botones de talla */
+.tallas-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.talla-btn {
+    min-width: 50px;
+    height: 42px;
+    padding: 0 10px;
+    border: 1.5px solid #ddd;
+    background: #fff;
+    color: #111;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-family: inherit;
+}
+.talla-btn:hover:not(.agotado) { border-color: #111; }
+.talla-btn.activo { border-color: #111; background: #111; color: #fff; }
+.talla-btn.agotado { color: #bbb; border-color: #eee; cursor: default; }
+.talla-btn .lock-icon { font-size: 10px; opacity: 0.5; }
+
+/* Cantidad */
+.seccion-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+.cantidad-ctrl {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.cantidad-ctrl button {
+    width: 36px;
+    height: 40px;
+    background: #fff;
+    border: none;
+    font-size: 18px;
+    color: #111;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    transition: background 0.2s;
+}
+.cantidad-ctrl button:hover { background: #f5f5f5; }
+.cantidad-ctrl input {
+    width: 48px;
+    height: 40px;
+    border: none;
+    border-left: 1.5px solid #ddd;
+    border-right: 1.5px solid #ddd;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    outline: none;
+}
+
+/* Presentación (unidad / cuarto / docena) */
+.presentacion-opciones {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.presentacion-btn {
+    flex: 1;
+    min-width: 90px;
+    padding: 10px 8px;
+    border: 1.5px solid #ddd;
+    background: #fff;
+    color: #111;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+    font-family: inherit;
+    line-height: 1.2;
+}
+.presentacion-btn small { display: block; font-weight: 400; color: #777; font-size: 11px; }
+.presentacion-btn:hover { border-color: #888; }
+.presentacion-btn.seleccionado { border-color: #111; background: #111; color: #fff; }
+.presentacion-btn.seleccionado small { color: #ddd; }
+
+/* Botones de acción */
+.btn-agregar-carrito {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: #111;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.25s;
+    margin-bottom: 10px;
+    font-family: inherit;
+}
+.btn-agregar-carrito:hover { background: #333; }
+
+.btn-favoritos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px;
+    background: #fff;
+    color: #111;
+    border: 1.5px solid #ddd;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: border-color 0.25s;
+    font-family: inherit;
+    text-decoration: none;
+}
+.btn-favoritos:hover { border-color: #111; }
+
+/* Trust badges */
+.trust-badges {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #333;
+}
+.trust-item .trust-icon { font-size: 18px; flex-shrink: 0; }
+.trust-item.envio-gratis { color: #007a4d; font-weight: 600; }
+
+/* Cupón promo */
+.promo-cupon {
+    margin-top: 14px;
+    font-size: 13px;
+    color: #c2185b;
+    font-weight: 600;
+}
+
+/* Acordeón descripción */
+.acordeon {
+    margin-top: 24px;
+    border-top: 1px solid #e8e8e8;
+}
+.acordeon-item {
+    border-bottom: 1px solid #e8e8e8;
+}
+.acordeon-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+    user-select: none;
+}
+.acordeon-header:hover { color: #555; }
+.acordeon-icon { font-size: 20px; transition: transform 0.3s; }
+.acordeon-item.open .acordeon-icon { transform: rotate(45deg); }
+.acordeon-body {
+    display: none;
+    padding: 0 0 16px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+}
+.acordeon-item.open .acordeon-body { display: block; }
+
+/* ===================================================
+   POPUP "Artículo agregado al carrito"
+   =================================================== */
+.popup-carrito-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    backdrop-filter: blur(3px);
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 80px;
+}
+.popup-carrito-overlay.active { display: flex; }
+
+.popup-carrito-box {
+    background: #fff;
+    border-radius: 4px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 28px;
+    position: relative;
+    animation: slideDownPopup 0.3s ease;
+}
+@keyframes slideDownPopup {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.popup-carrito-box .cerrar-popup {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #555;
+    padding: 0;
+    line-height: 1;
+    width: auto;
+    border-radius: 0;
+}
+.popup-carrito-box .cerrar-popup:hover { color: #111; }
+
+.popup-titulo {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 20px;
+    padding-right: 30px;
+}
+
+.popup-producto-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+.popup-prod-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    background: #f5f5f5;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+.popup-prod-info { flex: 1; }
+.popup-prod-info .prod-nombre { font-size: 14px; font-weight: 600; color: #111; margin-bottom: 4px; }
+.popup-prod-info .prod-meta { font-size: 12px; color: #777; line-height: 1.6; }
+.popup-prod-info .prod-precio { font-size: 15px; font-weight: 700; color: #111; margin-top: 6px; }
+
+.popup-subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    font-size: 14px;
+    color: #111;
+    margin-bottom: 16px;
+}
+.popup-subtotal-row strong { font-size: 16px; }
+
+.popup-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.popup-btn-pagar {
+    width: 100%;
+    padding: 14px;
+    background: #111;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+}
+.popup-btn-pagar:hover { background: #333; }
+.popup-btn-carrito {
+    width: 100%;
+    padding: 13px;
+    background: #fff;
+    color: #111;
+    border: 1.5px solid #ddd;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+}
+.popup-btn-carrito:hover { border-color: #111; }
+
+/* "También te puede interesar" */
+.popup-relacionados {
+    margin-top: 28px;
+}
+.popup-relacionados h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #111;
+    margin-bottom: 16px;
+}
+.popup-rel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+.popup-rel-card {
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+}
+.popup-rel-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    background: #f5f5f5;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    display: block;
+    transition: transform 0.2s;
+}
+.popup-rel-card:hover .popup-rel-img { transform: scale(1.03); }
+.popup-rel-nombre {
+    font-size: 12px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 2px;
+    line-height: 1.3;
+}
+.popup-rel-precio {
+    font-size: 13px;
+    color: #555;
+}
+
+/* Mensaje error/éxito inline */
+.mensaje-detalle {
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: none;
+}
+.mensaje-detalle.error { background: #fff0f0; color: #c0392b; border: 1px solid #f5c6cb; display: block; }
+.mensaje-detalle.success { background: #edfcf4; color: #1a7f4e; border: 1px solid #b7e4c7; display: block; }
+
+/* ===================================================
+   RESPONSIVE
+   =================================================== */
+@media (max-width: 900px) {
+    .detalle { flex-direction: column; gap: 28px; padding: 20px; }
+    .media { flex: none; width: 100%; max-width: 100%; }
+    .thumbnails-grid { grid-template-columns: repeat(4, 1fr); }
+    .popup-rel-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+    .info h2 { font-size: 20px; }
+    .precio-actual { font-size: 19px; }
+    .thumbnails-grid { grid-template-columns: repeat(3, 1fr); }
+    .popup-carrito-box { padding: 20px; }
+    .popup-rel-grid { grid-template-columns: repeat(2, 1fr); }
+    .tallas-grid { gap: 6px; }
+    .talla-btn { min-width: 44px; height: 38px; font-size: 12px; }
+}

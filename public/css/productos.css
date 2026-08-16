@@ -1,0 +1,23 @@
+/* Contenedor de productos */
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 20px 10px;
+}
+
+/* Enlaces de producto */
+a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* ===== Media Query para móviles ===== */
+@media (max-width: 480px) {
+    .grid-productos {
+        grid-template-columns: repeat(2, 1fr); /* 2 productos por fila */
+        gap: 12px;
+        padding: 8px;
+    }
+}
