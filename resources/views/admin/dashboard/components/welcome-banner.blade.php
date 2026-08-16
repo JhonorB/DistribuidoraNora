@@ -14,13 +14,13 @@
     </div>
 
     <div class="dash-banner-actions">
-        <a href="{{ route('admin.productos.create') }}" class="dash-btn-light">
+        <button type="button" onclick="openProductModal('create')" class="dash-btn-light">
             <i class="fas fa-plus-circle"></i>
             <span>Nuevo Producto</span>
-        </a>
-        <a href="{{ route('admin.pedidos') }}" class="dash-btn-glass">
-            <i class="fas fa-receipt"></i>
-            <span>Ver Pedidos</span>
-        </a>
+        </button>
+        <button type="button" onclick="switchDashboardTab('inventory', document.getElementById('tabBtnInventory'))" class="dash-btn-glass">
+            <i class="fas fa-boxes-stacked"></i>
+            <span>Gestionar Inventario</span>
+        </button>
     </div>
 </div>

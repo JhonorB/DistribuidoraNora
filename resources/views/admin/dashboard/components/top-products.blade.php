@@ -5,9 +5,9 @@
             <h3>Control de Inventario</h3>
             <p>Productos con mayor rotación y alertas de stock</p>
         </div>
-        <a href="{{ route('admin.productos') }}" class="dash-action-btn" style="padding: 5px 10px; font-size: 11.5px;">
-            <span>Stock</span>
-        </a>
+        <button type="button" class="dash-action-btn" style="padding: 5px 10px; font-size: 11.5px;" onclick="switchDashboardTab('inventory', document.getElementById('tabBtnInventory'))">
+            <i class="fas fa-boxes-stacked"></i> Ver Todo
+        </button>
     </div>
 
     <div class="dash-stock-list">
@@ -46,13 +46,13 @@
 
         <div class="dash-stock-item">
             <div class="dash-stock-info">
-                <img src="{{ asset('assets/img/default-product.png') }}" alt="Topsito Seamless Confort" class="dash-stock-img" onerror="this.src='https://via.placeholder.com/42x42/ffe4f0/d63384?text=LN'">
+                <img src="{{ asset('assets/img/default-product.png') }}" alt="Conjunto Bralette & Bikini Velvet" class="dash-stock-img" onerror="this.src='https://via.placeholder.com/42x42/ffe4f0/d63384?text=LN'">
                 <div class="dash-stock-details">
-                    <p class="dash-stock-name">Topsito Seamless Confort</p>
-                    <p class="dash-stock-cat">Topsito • S/. 35.00</p>
+                    <p class="dash-stock-name">Conjunto Bralette Velvet</p>
+                    <p class="dash-stock-cat">Conjunto • S/. 48.00</p>
                 </div>
             </div>
-            <span class="dash-stock-pill good">32 en stock</span>
+            <span class="dash-stock-pill zero">Agotado (0)</span>
         </div>
     </div>
 </div>

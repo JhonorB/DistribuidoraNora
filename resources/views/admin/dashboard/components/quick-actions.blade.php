@@ -8,9 +8,13 @@
     </div>
 
     <div class="dash-quick-grid">
-        <a href="{{ route('admin.productos.create') }}" class="dash-quick-tile">
+        <a href="javascript:void(0)" onclick="openProductModal('create')" class="dash-quick-tile">
             <i class="fas fa-plus-circle"></i>
             <span>Nuevo Producto</span>
+        </a>
+        <a href="javascript:void(0)" onclick="switchDashboardTab('inventory', document.getElementById('tabBtnInventory'))" class="dash-quick-tile">
+            <i class="fas fa-boxes-stacked"></i>
+            <span>Inventario</span>
         </a>
         <a href="{{ route('admin.pedidos') }}" class="dash-quick-tile">
             <i class="fas fa-truck-loading"></i>
@@ -19,10 +23,6 @@
         <a href="{{ route('admin.contactos') }}" class="dash-quick-tile">
             <i class="fas fa-envelope-open-text"></i>
             <span>Mensajes Web</span>
-        </a>
-        <a href="{{ route('admin.reclamaciones') }}" class="dash-quick-tile">
-            <i class="fas fa-book-open"></i>
-            <span>Reclamaciones</span>
         </a>
     </div>
 </div>
