@@ -182,13 +182,65 @@
         .badge-success { background-color: #d4edda; color: #155724; }
         .badge-warning { background-color: #fff3cd; color: #856404; }
         .badge-danger { background-color: #f8d7da; color: #721c24; }
+
+        /* Responsive Mobile Styles */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #d63384;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 5px;
+            margin-right: 12px;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 998;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: inline-block;
+            }
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -270px;
+                height: 100vh;
+                z-index: 999;
+                transition: left 0.3s ease;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .sidebar-overlay.active {
+                display: block;
+            }
+            .top-navbar {
+                padding: 12px 16px;
+            }
+            .content-body {
+                padding: 20px 14px;
+            }
+        }
     </style>
     @yield('styles')
 </head>
 <body>
 
+    <!-- Mobile Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
     <!-- Sidebar Navigation -->
-    <div class="sidebar">
+    <div class="sidebar" id="adminSidebar">
         <div class="sidebar-brand">
             Nora Admin
         </div>
@@ -217,12 +269,17 @@
     <!-- Main Content Panel -->
     <div class="main-content">
         <div class="top-navbar">
-            <div class="nav-title">
-                <strong>@yield('nav_title', 'Administración')</strong>
+            <div style="display: flex; align-items: center;">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleSidebar()" aria-label="Abrir Menú">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="nav-title">
+                    <strong>@yield('nav_title', 'Administración')</strong>
+                </div>
             </div>
             <div class="user-profile">
                 <i class="fas fa-user-circle"></i>
-                {{ Auth::user()->name }}
+                <span>{{ Auth::user()->name ?? 'Administrador' }}</span>
                 <a href="javascript:void(0)" onclick="document.getElementById('logout-form').submit();" style="margin-left: 20px; color: #666; text-decoration: none; font-size: 14px;"><i class="fas fa-sign-out-alt"></i> Salir</a>
             </div>
         </div>
@@ -241,6 +298,17 @@
     <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" style="display: none;">
         @csrf
     </form>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('adminSidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            if (sidebar && overlay) {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            }
+        }
+    </script>
 
     @yield('scripts')
 
