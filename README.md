@@ -1,59 +1,114 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Distribuidora Lencería Nora - Proyecto Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Bienvenido al repositorio del proyecto de la tienda virtual **Distribuidora Lencería Nora**. 
 
-## About Laravel
+A continuación, encontrarás los pasos exactos que debes seguir para clonar e instalar este proyecto en cualquier computadora (Windows, Mac o Linux) sin errores.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🛠️ Requisitos Previos
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Asegúrate de tener instalado en tu computadora:
+1. **PHP** (v8.2 o superior) - [Descargar PHP](https://windows.php.net/download/)
+2. **Composer** (Gestor de dependencias de PHP) - [Descargar Composer](https://getcomposer.org/)
+3. **Node.js y npm** - [Descargar Node.js](https://nodejs.org/)
+4. **Git** - [Descargar Git](https://git-scm.com/)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🚀 Guía de Instalación Rápida
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Sigue estos comandos línea por línea en tu terminal o consola (ej. Git Bash o la terminal de VS Code):
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 1. Clonar el repositorio
+Descarga el proyecto desde GitHub y entra en la carpeta:
+```bash
+git clone https://github.com/JhonorB/DistribuidoraNora.git
+cd DistribuidoraNora
+```
 
-## Laravel Sponsors
+### 2. Instalar dependencias de PHP
+Esto descargará todo el núcleo de Laravel y las librerías necesarias:
+```bash
+composer install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 3. Configurar el archivo de Entorno (.env)
+Laravel necesita un archivo oculto `.env` para las variables de configuración. Crea una copia del archivo de ejemplo:
+```bash
+cp .env.example .env
+```
+> **Nota para Windows (CMD):** Si `cp` no funciona, usa `copy .env.example .env`
 
-### Premium Partners
+**¡IMPORTANTE! Base de Datos:**
+Abre el nuevo archivo `.env` en tu editor de código y busca la sección de base de datos. Como usamos SQLite, asegúrate de que esté configurado exactamente así (puedes borrar las otras líneas de DB_... si quieres):
+```env
+DB_CONNECTION=sqlite
+# No necesitas DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME ni DB_PASSWORD
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 4. Generar la Llave de la Aplicación
+Crea la clave de seguridad de Laravel:
+```bash
+php artisan key:generate
+```
 
-## Contributing
+### 5. Crear la Base de Datos y ejecutar Migraciones
+El proyecto usa SQLite, por lo que la base de datos es un simple archivo. 
+Primero, asegúrate de que el archivo exista ejecutando en la terminal (si estás en Windows usando VS Code o PowerShell):
+```bash
+# Solo si no existe ya un archivo database.sqlite
+ni database/database.sqlite
+```
+*(Si estás en Mac/Linux/GitBash usa: `touch database/database.sqlite`)*
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Luego, crea las tablas y carga los datos de prueba (como el administrador):
+```bash
+php artisan migrate --seed
+```
+*(Presiona **"yes"** si te pregunta si deseas crear la base de datos).*
 
-## Code of Conduct
+### 6. Enlazar el Almacenamiento (Storage)
+Para que las imágenes subidas por los usuarios (fotos de perfil, productos) puedan verse en la web pública:
+```bash
+php artisan storage:link
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 7. Instalar dependencias de Frontend (Vite/Node)
+Descarga los paquetes de npm y compila los assets en caso de ser necesario:
+```bash
+npm install
+npm run build
+```
 
-## Security Vulnerabilities
+### 8. ¡Levantar el Servidor!
+Todo está listo. Arranca el servidor local:
+```bash
+php artisan serve
+```
+Abre tu navegador y ve a: **http://127.0.0.1:8000**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 🔐 Credenciales de Acceso por Defecto
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Si se ejecutaron correctamente los seeders (`--seed`), deberías tener acceso con la siguiente cuenta maestra:
+
+* **Correo:** `admin@lencerianora.com`
+* **Contraseña:** `password` *(O la contraseña que hayan definido en el ProductSeeder/DatabaseSeeder)*
+
+---
+
+## ⚠️ Solución de Problemas Comunes (Troubleshooting)
+
+1. **Error: "No application encryption key has been specified."**
+   * **Solución:** Olvidaste el paso 4. Ejecuta `php artisan key:generate`.
+
+2. **Error: "Database file does not exist" o "General error: 1 no such table"**
+   * **Solución:** Laravel no encuentra el archivo SQLite o no corriste las migraciones. Verifica que exista el archivo `database/database.sqlite` y vuelve a correr `php artisan migrate`.
+
+3. **Las fotos de perfil o de productos no cargan (sale un ícono roto).**
+   * **Solución:** Olvidaste el paso 6. Ejecuta `php artisan storage:link`.
+
+4. **Error: "Unclosed '[' does not match ')'" en alguna vista.**
+   * **Solución:** Es probable que tu versión de PHP/Laravel esté desfasada. Este proyecto recomienda PHP 8.2+.
+
+Cualquier otra duda, revisa los logs en `storage/logs/laravel.log`.
