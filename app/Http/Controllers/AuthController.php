@@ -21,9 +21,14 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+            if (!Auth::user()->is_active) {
+                Auth::logout();
+                return back()->withErrors(['email' => 'Tu cuenta ha sido suspendida por incumplimiento de normas. Comunícate con soporte.']);
+            }
+
             $request->session()->regenerate();
             
-            if (Auth::user()->email === 'admin@lencerianora.com') {
+            if (in_array(Auth::user()->role, ['admin', 'trabajador'])) {
                 return redirect()->route('admin.dashboard');
             }
 
@@ -63,6 +68,29 @@ class AuthController extends Controller
     {
         $user = Auth::user();
         return view('auth.perfil', compact('user'));
+    }
+
+    public function updateProfilePhoto(Request $request)
+    {
+        $request->validate([
+            'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $user = Auth::user();
+
+        if ($request->hasFile('profile_photo')) {
+            // Eliminar la foto anterior si existe
+            if ($user->profile_photo_path && \Illuminate\Support\Facades\Storage::disk('public')->exists($user->profile_photo_path)) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($user->profile_photo_path);
+            }
+
+            $path = $request->file('profile_photo')->store('avatars', 'public');
+            
+            $user->profile_photo_path = $path;
+            $user->save();
+        }
+
+        return back()->with('success', 'Foto de perfil actualizada correctamente.');
     }
 
     public function logout(Request $request)

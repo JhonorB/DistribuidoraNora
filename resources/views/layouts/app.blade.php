@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/layout/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/layout/headerbusqueda.css') }}">
     <link rel="stylesheet" href="{{ asset('css/layout/headercarrito.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/layout/headerhamburgesa.css') }}">
+
     <link rel="stylesheet" href="{{ asset('css/usuario.css') }}">
     <link rel="stylesheet" href="{{ asset('css/layout/whatsapp.css') }}">
     
@@ -29,9 +29,9 @@
   <!-- FILA SUPERIOR -->
   <div class="fila-superior">
     <!-- Menú hamburguesa (solo móvil, far-left) -->
-    <div id="menuToggle" class="icono-hamburguesa" aria-label="Menú móvil">
+    <button id="menuToggle" class="icono-hamburguesa" aria-label="Abrir menú" aria-expanded="false" type="button">
         <i class="fas fa-bars"></i>
-    </div>
+    </button>
 
     <!-- Left: Brand Logo -->
     <a href="{{ route('home') }}" class="logo-container">
@@ -50,9 +50,9 @@
           <li><a href="{{ route('products.index', ['cat' => 'topsito']) }}">Topsito</a></li>
         </ul>
       </li>
-      <li><a href="{{ route('page.marbelover') }}">Sé una Marbelover</a></li>
-      <li><a href="{{ route('page.contacto') }}">Contacto</a></li>
+
       <li><a href="{{ route('page.catalogo') }}">Nuestro Catálogo</a></li>
+      <li><a href="{{ route('page.contacto') }}">Contacto</a></li>
     </ul>
     
     <!-- Right: Search Bar + Icons -->
@@ -76,10 +76,7 @@
                 <i class="far fa-user"></i>
             </div>
 
-            <!-- Favoritos / Wishlist (como el mock) -->
-            <a href="javascript:void(0)" class="icono-item movil-only" aria-label="Favoritos">
-                <i class="far fa-heart"></i>
-            </a>
+
 
             <!-- Contenedor carrito -->
             <div class="contenedor-carrito-hover">
@@ -120,9 +117,9 @@
           <li><a href="{{ route('products.index', ['cat' => 'topsito']) }}">Topsito</a></li>
         </ul>
       </li>
-      <li><a href="{{ route('page.marbelover') }}">Sé una Marbelover</a></li>
-      <li><a href="{{ route('page.contacto') }}">Contacto</a></li>
+
       <li><a href="{{ route('page.catalogo') }}">Nuestro Catálogo</a></li>
+      <li><a href="{{ route('page.contacto') }}">Contacto</a></li>
     </ul>
   </div>
   <div id="searchOverlay" class="search-modal-overlay" style="display: none;"></div>
@@ -145,7 +142,7 @@
 
     <!-- Whatsapp flotante -->
     <div class="whatsapp-float">
-      <a href="https://wa.me/51976553014" target="_blank" class="whatsapp-bubble">
+      <a href="https://wa.me/51977228430?text=Hola,%20me%20gustaría%20más%20información%20sobre%20los%20productos." target="_blank" class="whatsapp-bubble">
         <span>¿Necesitas ayuda? Conversemos</span>
         <div class="whatsapp-button">
           <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
@@ -162,7 +159,7 @@
             <ul>
                 <li><a href="{{ route('page.nosotros') }}">Sobre nosotros</a></li>
                 <li><a href="{{ route('page.distribuidora') }}">Distribuidores</a></li>
-                <li><a href="{{ route('page.marbelover') }}">Sé una Marbelover</a></li>
+
             </ul>
         </div>
         
@@ -189,16 +186,17 @@
         <!-- Col 4: Contáctanos (Info de contacto) -->
         <div class="clean-footer-col">
             <h4>Contáctanos</h4>
-            <p><strong>Tienda 1:</strong> Jr. América 325, Tienda 2, La Victoria.</p>
-            <p><strong>Tienda 2:</strong> Jr. Hipólito Unanue 1457, La Victoria.</p>
-            <p><strong>Teléfono:</strong> +51 976553014</p>
+            <p><strong>Tienda 1:</strong> Jr. Hipólito Unanue 1457, La Victoria.</p>
+            <p><strong>Tienda 2:</strong> Jr. América 325 int. 2-3, La Victoria.</p>
+            <p><strong>Teléfono:</strong> +51 977228430</p>
             <p><strong>Correo:</strong> lencerianora2026@gmail.com</p>
         </div>
         
         <!-- Col 5: Libro de Reclamaciones Badge -->
         <div class="clean-footer-col" style="align-items: center; justify-content: center;">
-            <a href="{{ route('page.reclamaciones') }}" class="libro-reclamaciones-badge" style="padding: 10px; background: white; border-radius: 8px; display: inline-block;">
-                <img src="{{ asset('assets/img/LIBRODERECLAMACIONES.png') }}" style="max-width: 150px; height: auto; display: block; border-radius: 4px;" alt="Libro de reclamaciones">
+            <a href="{{ route('page.reclamaciones') }}" class="libro-reclamaciones-badge" style="padding: 12px 15px; background: white; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 2px solid #e2e8f0; min-width: 150px; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.1)'">
+                <span style="color: #2b5496 !important; font-size: 15px; font-weight: 900; text-align: center; font-family: system-ui, -apple-system, sans-serif; letter-spacing: 0.5px; line-height: 1.2; margin-bottom: 8px;">LIBRO DE<br>RECLAMACIONES</span>
+                <i class="fas fa-book-open" style="font-size: 45px; color: #2b5496 !important;"></i>
             </a>
         </div>
     </div>
@@ -207,17 +205,17 @@
     
     <div class="clean-footer-bottom">
         <div class="clean-footer-social">
-            <a href="https://www.facebook.com/share/16LxCFavzs/" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+            <a href="https://www.facebook.com/share/19But5hA28/" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://www.instagram.com/marbellin_lenceria" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" />
+            <a href="https://www.instagram.com/marbellin_lenceria" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://www.tiktok.com/@maribellin.lenceria" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok" />
+            <a href="https://www.tiktok.com/@lenceria.nora01?_r=1&_t=ZS-98wJko6bxg4" target="_blank" aria-label="TikTok">
+                <i class="fab fa-tiktok"></i>
             </a>
-            <a href="https://youtube.com/@lenceria_de_dama_2024" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" />
+            <a href="https://youtube.com/@lenceria_de_dama_2024" target="_blank" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
             </a>
         </div>
         <p>&copy; 2025 Distribuidora Lencería Nora. Todos los derechos reservados.</p>

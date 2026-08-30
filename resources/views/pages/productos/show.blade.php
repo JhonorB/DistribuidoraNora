@@ -19,7 +19,8 @@
         precioUnidad: {{ $product->price_unit }},
         precioCuarto: {{ $product->price_quarter }},
         precioDocena: {{ $product->price_dozen }},
-        imagenes: @json(array_map(function($img) { return asset($img); }, $product->images))
+        imagenes: {!! json_encode(array_map(function($img) { return asset($img); }, is_array($product->images) ? $product->images : (json_decode($product->images, true) ?: []))) !!},
+        sizes: {!! json_encode($product->sizes ?: ['XS'=>true,'S'=>true,'M'=>true,'L'=>true,'XL'=>true,'XXL'=>true]) !!}
     };
 </script>
 <script type="module" src="{{ asset('js/cargar-producto-detalle.js') }}"></script>

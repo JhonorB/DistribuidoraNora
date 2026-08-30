@@ -32,10 +32,7 @@ class PageController extends Controller
         return back()->with('success', 'Tu mensaje ha sido enviado correctamente. Nos pondremos en contacto contigo pronto.');
     }
 
-    public function marbelover()
-    {
-        return view('pages.estaticas.marbelover');
-    }
+
 
     public function preguntasFrecuentes()
     {

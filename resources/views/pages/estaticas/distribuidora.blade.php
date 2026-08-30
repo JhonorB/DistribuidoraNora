@@ -17,8 +17,8 @@
     <!-- Tienda 1 -->
     <div class="store-one">
         <h2>Tienda 1</h2>
-        <p>Dirección: Jr. América 325, Tienda 2, La Victoria 15018, Lima</p>
-        <p>Teléfono: <a href="tel:976553014" class="phone-one">976553014</a></p>
+        <p>Dirección: Jr. Hipólito Unanue 1457, La Victoria, Lima</p>
+        <p>Teléfono: <a href="tel:977228430" class="phone-one">977228430</a></p>
         <p>Correo electrónico: <a href="mailto:lencerianora2026@gmail.com" class="email-one">lencerianora2026@gmail.com</a></p>
         <p><strong>Horario:</strong> Lunes a Sábado, de 9:00 a.m. a 7:00 p.m. (atención continua durante todo el día)</p>
         <div class="map-one">
@@ -29,8 +29,8 @@
     <!-- Tienda 2 -->
     <div class="store-two">
         <h2>Tienda 2</h2>
-        <p>Dirección: Jirón Hipólito Unanue 1457, Tienda 1, La Victoria 15018 (A una cuadra del Parque Cánepa, toldo color negro, cruzando la Av. Huánuco)</p>
-        <p>Teléfono: <a href="tel:976553014" class="phone-two">976553014</a></p>
+        <p>Dirección: Jr. América 325 int. 2-3, La Victoria, Lima</p>
+        <p>Teléfono: <a href="tel:977228430" class="phone-two">977228430</a></p>
         <p>Correo electrónico: <a href="mailto:lencerianora2026@gmail.com" class="email-two">lencerianora2026@gmail.com</a></p>
         <p><strong>Horario:</strong> Lunes a Sábado, de 9:00 a.m. a 7:00 p.m. (horario corrido con atención personalizada en tienda)</p>
         <div class="map-two">

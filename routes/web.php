@@ -17,7 +17,7 @@ Route::get('/productos/{id}', [ProductController::class, 'show'])->name('product
 Route::get('/nosotros', [PageController::class, 'nosotros'])->name('page.nosotros');
 Route::get('/contacto', [PageController::class, 'contacto'])->name('page.contacto');
 Route::post('/contacto', [PageController::class, 'enviarContacto'])->name('page.contacto.submit');
-Route::get('/marbelover', [PageController::class, 'marbelover'])->name('page.marbelover');
+
 Route::get('/preguntas-frecuentes', [PageController::class, 'preguntasFrecuentes'])->name('page.preguntas');
 Route::get('/politica-privacidad', [PageController::class, 'politicaPrivacidad'])->name('page.privacidad');
 Route::get('/terminos', [PageController::class, 'terminos'])->name('page.terminos');
@@ -44,17 +44,26 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 // Authenticated Routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/perfil', [AuthController::class, 'profile'])->name('auth.profile');
+    Route::post('/perfil/avatar', [AuthController::class, 'updateProfilePhoto'])->name('auth.profile.photo');
 
     // Admin Routes
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+        
+        // Product Management (AJAX)
         Route::get('/productos', [AdminController::class, 'productos'])->name('admin.productos');
         Route::get('/productos/registro', [AdminController::class, 'registroProducto'])->name('admin.productos.create');
         Route::post('/productos/registro', [AdminController::class, 'guardarProducto'])->name('admin.productos.store');
+        Route::get('/productos/{id}/api', [AdminController::class, 'getProductApi'])->name('admin.productos.api.get');
+        Route::put('/productos/{id}/api', [AdminController::class, 'updateProductApi'])->name('admin.productos.api.update');
+        Route::delete('/productos/{id}/api', [AdminController::class, 'deleteProductApi'])->name('admin.productos.api.delete');
         Route::get('/pedidos', [AdminController::class, 'pedidos'])->name('admin.pedidos');
         Route::get('/pedidos/{id}', [AdminController::class, 'detallePedido'])->name('admin.pedidos.show');
         Route::post('/pedidos/{id}/actualizar', [AdminController::class, 'actualizarPedido'])->name('admin.pedidos.update');
         Route::get('/contactos', [AdminController::class, 'contactos'])->name('admin.contactos');
         Route::get('/reclamaciones', [AdminController::class, 'reclamaciones'])->name('admin.reclamaciones');
+        Route::get('/usuarios', [AdminController::class, 'usuarios'])->name('admin.usuarios');
+        Route::post('/usuarios', [AdminController::class, 'storeUsuario'])->name('admin.usuarios.store');
+        Route::post('/usuarios/{id}', [AdminController::class, 'updateUsuario'])->name('admin.usuarios.update');
     });
 });

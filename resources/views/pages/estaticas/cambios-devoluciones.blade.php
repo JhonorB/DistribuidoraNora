@@ -37,8 +37,8 @@
       <p>Podrás elegir entre un reembolso total o el envío del producto correcto sin costo de envío adicional.</p>
 
       <h2><i class="fas fa-map-marker-alt"></i> Sucursales de atención</h2>
-      <p><strong>Tienda 1: </strong>Jr. América 325, Tienda 2, La Victoria, Lima.<br>
-         <strong>Tienda 2: </strong>Jr. Hipólito Unanue 1457, La Victoria, Lima.<br>
+      <p><strong>Tienda 1: </strong>Jr. Hipólito Unanue 1457, La Victoria, Lima.<br>
+      <strong>Tienda 2: </strong>Jr. América 325 int. 2-3, La Victoria, Lima.<br>
          <strong>Horarios: </strong>Lunes a Sábado de 9:00 a.m. a 7:00 p.m.
       </p>
       <p><em>Última actualización: 2025</em></p>

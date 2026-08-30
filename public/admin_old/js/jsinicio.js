@@ -19,7 +19,7 @@ const productos = [
   { nombre: "Semi Hilo Pretina Ancha", id: "1032", precio: "S/59.00", imagen: "imagenes/SEMI HILO PRETINA ANCHA.jpg" },
   { nombre: "Topsito Olimpico", id: "1003", precio: "S/67.00", imagen: "imagenes/TOPSITO OLIMPICO.jpg" },
   { nombre: "Topsito Con Tirante", id: "1002", precio: "S/67.00", imagen: "imagenes/TOPSITO CON TIRANTE.jpg" },
-  { nombre: "Topsito Clasico", id: "1001", precio: "S/67.00", imagen: "imagenes/TOPSITO CLASICO.jpg" }
+  { nombre: "Topsito Clasico", id: "1001", precio: "S/67.00", imagen: "../assets/img/topsitos/topsito_clasico_azul.png" }
 ];
 
 const cantidad = 100;

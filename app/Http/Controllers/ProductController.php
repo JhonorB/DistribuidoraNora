@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Product::query();
+        $query = Product::where('is_active', true);
 
         if ($request->has('cat') && !empty($request->cat)) {
             $query->where('category', strtolower($request->cat));
@@ -30,11 +30,12 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::where('is_active', true)->findOrFail($id);
         
         // Fetch some related products in same category
         $relatedProducts = Product::where('category', $product->category)
             ->where('id', '!=', $product->id)
+            ->where('is_active', true)
             ->take(4)
             ->get();
 

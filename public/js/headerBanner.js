@@ -1,77 +1,124 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* ==========================================
-     🎞 Carrusel automático
-  ========================================== */
-  const banners = document.querySelectorAll(".banner-img");
-  let currentBanner = 0;
-
-  if (banners.length > 0) {
-    setInterval(() => {
-      banners[currentBanner].classList.remove("visible");
-      currentBanner = (currentBanner + 1) % banners.length;
-      banners[currentBanner].classList.add("visible");
-    }, 3500);
-  }
-
-  /* ==========================================
-     📱 Menú hamburguesa (toggle en móviles)
+     📱 Menú hamburguesa y navegación
   ========================================== */
   const menuToggle = document.getElementById("menuToggle");
   const menuNav = document.getElementById("menuNav");
+  const menuIcon = menuToggle ? menuToggle.querySelector("i") : null;
+
+  function closeMobileMenu() {
+    if (menuNav && menuNav.classList.contains("show")) {
+      menuNav.classList.remove("show");
+      if (menuToggle) {
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Abrir menú");
+      }
+      if (menuIcon) {
+        menuIcon.classList.remove("fa-times");
+        menuIcon.classList.add("fa-bars");
+      }
+    }
+  }
 
   if (menuToggle && menuNav) {
-    menuToggle.addEventListener("click", () => {
-      menuNav.classList.toggle("show");
-      menuToggle.classList.toggle("active"); // animación de hamburguesa
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation(); // Evitar que el clic cierre inmediatamente
+      const isOpen = menuNav.classList.toggle("show");
+      menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      menuToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+      
+      if (menuIcon) {
+        if (isOpen) {
+          menuIcon.classList.remove("fa-bars");
+          menuIcon.classList.add("fa-times");
+        } else {
+          menuIcon.classList.remove("fa-times");
+          menuIcon.classList.add("fa-bars");
+        }
+      }
     });
   }
 
   /* ==========================================
-     📂 Submenús en móviles (ej: Productos)
-     - Un clic: abre/cierra submenú
-     - Doble clic: sigue el enlace
+     📂 Dropdowns: Desktop (Click to open) y Móvil (Acordeón)
   ========================================== */
-  const subMenuLinks = document.querySelectorAll(".dropdown > a");
-  let clickTimer = null;
+  const dropdowns = document.querySelectorAll(".dropdown");
 
-  subMenuLinks.forEach((link) => {
-    const submenu = link.nextElementSibling; // el <ul> del submenú
+  dropdowns.forEach((dropdown) => {
+    const link = dropdown.querySelector("a");
+    const submenu = dropdown.querySelector(".dropdown-menu");
 
     if (!submenu) return;
 
     link.addEventListener("click", (e) => {
-      if (window.innerWidth > 768) return; // solo móviles/tablets
+      // Prevenir navegación por defecto si el menú no está abierto (para touch/clicks)
+      const isDesktop = window.innerWidth > 1024;
+      const isOpen = dropdown.classList.contains("open");
 
-      e.preventDefault();
+      if (!isOpen) {
+        e.preventDefault();
+        
+        // Cerrar otros abiertos
+        dropdowns.forEach(d => {
+          if (d !== dropdown) d.classList.remove("open");
+        });
 
-      if (clickTimer) {
-        // Doble clic → redirigir
-        clearTimeout(clickTimer);
-        clickTimer = null;
-        window.location.href = link.getAttribute("href");
-      } else {
-        // Primer clic → abrir/cerrar submenú
-        clickTimer = setTimeout(() => {
-          submenu.classList.toggle("show");
-          clickTimer = null;
-        }, 250); // tiempo para detectar doble clic
+        dropdown.classList.add("open");
+      } else if (!isDesktop) {
+        // En móvil, si ya está abierto, permitir ir al enlace u ocultarlo
+        e.preventDefault();
+        dropdown.classList.remove("open");
       }
     });
   });
 
   /* ==========================================
-     🔄 Cerrar submenú al hacer clic fuera
+     🔄 Eventos de Cierre Global (Esc, Clic fuera)
   ========================================== */
   document.addEventListener("click", (e) => {
-    if (window.innerWidth > 768) return;
+    // Cerrar menú móvil si se hace clic fuera de la cabecera
+    const header = document.querySelector("header");
+    if (header && !header.contains(e.target)) {
+      closeMobileMenu();
+    }
 
-    subMenuLinks.forEach((link) => {
-      const submenu = link.nextElementSibling;
-      if (submenu && submenu.classList.contains("show")) {
-        if (!submenu.contains(e.target) && !link.contains(e.target)) {
-          submenu.classList.remove("show");
-        }
+    // Cerrar dropdowns de productos si se hace clic fuera
+    let clickedInsideDropdown = false;
+    dropdowns.forEach(dropdown => {
+      if (dropdown.contains(e.target)) {
+        clickedInsideDropdown = true;
       }
     });
+
+    if (!clickedInsideDropdown) {
+      dropdowns.forEach(dropdown => dropdown.classList.remove("open"));
+    }
   });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeMobileMenu();
+      dropdowns.forEach(dropdown => dropdown.classList.remove("open"));
+    }
+  });
+
+  /* ==========================================
+     Cerrar menú móvil al hacer clic en un enlace normal
+  ========================================== */
+  if (menuNav) {
+    const normalLinks = menuNav.querySelectorAll("li:not(.dropdown) a");
+    normalLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        closeMobileMenu();
+      });
+    });
+    // Y los enlaces de submenú
+    const subLinks = menuNav.querySelectorAll(".dropdown-menu a");
+    subLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        closeMobileMenu();
+      });
+    });
+  }
+
 });

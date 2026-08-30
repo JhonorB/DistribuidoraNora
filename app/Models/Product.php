@@ -20,6 +20,9 @@ class Product extends Model
         'category',
         'images',
         'stock',
+        'is_active',
+        'sizes',
+        'colors',
     ];
 
     protected $casts = [
@@ -29,6 +32,9 @@ class Product extends Model
         'price_quarter' => 'float',
         'price' => 'float',
         'stock' => 'integer',
+        'is_active' => 'boolean',
+        'sizes' => 'array',
+        'colors' => 'array',
     ];
 
     public function orderItems()

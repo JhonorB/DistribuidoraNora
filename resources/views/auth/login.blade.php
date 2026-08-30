@@ -72,10 +72,10 @@
           </div>
       @endif
 
-      <form action="{{ route('auth.login.submit') }}" method="POST" autocomplete="off">
+      <form action="{{ route('auth.login.submit') }}" method="POST">
         @csrf
-        <input type="email" name="email" placeholder="Correo electrónico" value="{{ old('email') }}" required />
-        <input type="password" name="password" placeholder="Contraseña" required />
+        <input type="email" name="email" placeholder="Correo electrónico" value="{{ old('email') }}" autocomplete="username" required />
+        <input type="password" name="password" placeholder="Contraseña" autocomplete="current-password" required />
 
         <button type="submit">Ingresar</button>
 

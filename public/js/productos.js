@@ -262,11 +262,24 @@ export const productos = [
   precioDocena: 67.00,
   precioCuarto: 27.00,
   precio: 67.00,
-    imagenes: [
-        "../assets/img/topsitos/topsito-clasico-1.jpg",
-        "../assets/img/topsitos/topsito-clasico-2.jpg"
-   
-    ],
+      imagenes: [
+        "../assets/img/topsitos/topsito_clasico_azul.png",
+        "../assets/img/topsitos/topsito_clasico_azul_marino.png",
+        "../assets/img/topsitos/topsito_clasico_blanco.png",
+        "../assets/img/topsitos/topsito_clasico_borgona.png",
+        "../assets/img/topsitos/topsito_clasico_crema.png",
+        "../assets/img/topsitos/topsito_clasico_durazno.png",
+        "../assets/img/topsitos/topsito_clasico_gris_claro.png",
+        "../assets/img/topsitos/topsito_clasico_lila.png",
+        "../assets/img/topsitos/topsito_clasico_malva.png",
+        "../assets/img/topsitos/topsito_clasico_menta.png",
+        "../assets/img/topsitos/topsito_clasico_morado.png",
+        "../assets/img/topsitos/topsito_clasico_negro.png",
+        "../assets/img/topsitos/topsito_clasico_rojo.png",
+        "../assets/img/topsitos/topsito_clasico_rosa.png",
+        "../assets/img/topsitos/topsito_clasico_taupe.png",
+        "../assets/img/topsitos/topsito_clasico_verde_salvia.png"
+      ],
     descripcion: "Topsito de corte clásico, esencial para cualquier guardarropa íntimo. Su diseño simple y elegante lo convierte en una prenda versátil y atemporal.",
     categoria: "topsito"
 },

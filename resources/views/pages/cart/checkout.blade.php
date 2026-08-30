@@ -204,11 +204,15 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/ubicacion-peru.js') }}"></script>
-<script src="{{ asset('js/cargar-ubicacion.js') }}"></script>
-<script src="{{ asset('js/ubicacionPrecio.js') }}"></script>
-<script>
+<script type="module">
+    import { inicializarUbicacion } from "{{ asset('js/cargar-ubicacion.js') }}";
+    // Si necesitas ubicacionPrecios, impórtalo también
+    // import { ubicacionPrecios } from "{{ asset('js/ubicacionPrecio.js') }}";
+    
     document.addEventListener("DOMContentLoaded", () => {
+        // Inicializar Ubicacion
+        inicializarUbicacion();
+        
         const cart = JSON.parse(localStorage.getItem("carrito")) || [];
         const listaResumen = document.getElementById("listaResumen");
         const totalResumen = document.getElementById("totalResumen");

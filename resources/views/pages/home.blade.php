@@ -83,6 +83,208 @@
     font-size: 12.5px;
     color: #888;
 }
+/* Sección Tiendas */
+.tiendas-section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+    text-align: center;
+}
+.tiendas-title {
+    font-family: 'Playfair Display', serif;
+    color: #5e2129; /* Vino */
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+.tiendas-subtitle {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+.tiendas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+@media (max-width: 800px) {
+    .tiendas-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.tienda-card {
+    background: #fffdfd; /* Blanco cálido */
+    border: 1px solid #f4e3e6; /* Rosa empolvado */
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(94, 33, 41, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+.tienda-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(94, 33, 41, 0.12);
+}
+.tienda-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+.tienda-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+}
+.tienda-card:hover .tienda-img-wrap img {
+    transform: scale(1.05);
+}
+.tienda-img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(94,33,41,0.6) 0%, transparent 100%);
+    pointer-events: none;
+}
+.tienda-info {
+    padding: 25px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.tienda-label {
+    display: inline-block;
+    background: #d4af37; /* Dorado */
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    align-self: flex-start;
+}
+.tienda-address {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+.tienda-address i {
+    color: #5e2129;
+    margin-top: 3px;
+}
+.tienda-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+}
+@media (max-width: 480px) {
+    .tienda-actions {
+        flex-direction: column;
+    }
+}
+.btn-tienda {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.btn-mapa {
+    background: #fff;
+    color: #5e2129;
+    border: 1px solid #5e2129;
+}
+.btn-mapa:hover {
+    background: #5e2129;
+    color: #fff;
+}
+.btn-wsp {
+    background: #25D366;
+    color: #fff;
+    border: 1px solid #25D366;
+}
+.btn-wsp:hover {
+    background: #1ebc59;
+    border-color: #1ebc59;
+}
+
+/* Modal de Imagen */
+.img-modal {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.img-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    opacity: 1;
+}
+.img-modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+.img-modal.show .img-modal-content {
+    transform: scale(1);
+}
+.img-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    line-height: 1;
+    z-index: 100000;
+}
+.img-modal-close:hover,
+.img-modal-close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
 </style>
 @endsection
 
@@ -208,6 +410,68 @@
           </a>
         @endforeach
       </div>
+    </section>
+
+    <!-- Sección Tiendas -->
+    <section class="tiendas-section">
+      <h2 class="tiendas-title">Visita nuestras tiendas</h2>
+      <p class="tiendas-subtitle">Conoce nuestros productos, colores y precios especiales directamente en nuestras tiendas de La Victoria. Te esperamos con atención personalizada para compras individuales y por mayor.</p>
+      
+      <div class="tiendas-grid">
+        <!-- Tarjeta Tienda 1 -->
+        <div class="tienda-card">
+          <div class="tienda-img-wrap" onclick="openTiendaModal(this)">
+            <img src="{{ asset('assets/img/portada/Tienda1HipólitoUnanue.png') }}" alt="Fotografía real de la Tienda 1 de Lencería Nora en Jr. Hipólito Unanue 1457" loading="lazy">
+            <div class="tienda-img-overlay"></div>
+          </div>
+          <div class="tienda-info">
+            <span class="tienda-label">Tienda 1</span>
+            <div class="tienda-address">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Jr. Hipólito Unanue 1457, La Victoria</span>
+            </div>
+            <div class="tienda-actions">
+              <a href="https://www.google.com/maps/search/?api=1&query=Jr.+Hip%C3%B3lito+Unanue+1457,+La+Victoria,+Lima,+Per%C3%BA" target="_blank" rel="noopener noreferrer" class="btn-tienda btn-mapa">
+                <i class="fas fa-directions"></i> Cómo llegar
+              </a>
+              <a href="https://wa.me/51977228430?text=Hola,%20deseo%20informaci%C3%B3n%20sobre%20la%20Tienda%201%20ubicada%20en%20Jr.%20Hip%C3%B3lito%20Unanue%201457." target="_blank" rel="noopener noreferrer" class="btn-tienda btn-wsp">
+                <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta Tienda 2 -->
+        <div class="tienda-card">
+          <div class="tienda-img-wrap" onclick="openTiendaModal(this)">
+            <img src="{{ asset('assets/img/portada/Tienda2América325.png') }}" alt="Fotografía real de la Tienda 2 de Lencería Nora en Jr. América 325 int. 2-3" loading="lazy">
+            <div class="tienda-img-overlay"></div>
+          </div>
+          <div class="tienda-info">
+            <span class="tienda-label">Tienda 2</span>
+            <div class="tienda-address">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Jr. América 325 int. 2-3, La Victoria</span>
+            </div>
+            <div class="tienda-actions">
+              <a href="https://www.google.com/maps/search/?api=1&query=Jr.+Am%C3%A9rica+325+int.+2-3,+La+Victoria,+Lima,+Per%C3%BA" target="_blank" rel="noopener noreferrer" class="btn-tienda btn-mapa">
+                <i class="fas fa-directions"></i> Cómo llegar
+              </a>
+              <a href="https://wa.me/51977228430?text=Hola,%20deseo%20informaci%C3%B3n%20sobre%20la%20Tienda%202%20ubicada%20en%20Jr.%20Am%C3%A9rica%20325%20int.%202-3." target="_blank" rel="noopener noreferrer" class="btn-tienda btn-wsp">
+                <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal para las fotos de tiendas -->
+    <div id="tiendaModal" class="img-modal">
+      <span class="img-modal-close" onclick="closeTiendaModal()">&times;</span>
+      <img class="img-modal-content" id="imgModalTarget">
+    </div>
+
     <!-- Sección de Testimonios -->
     <section class="testimonials-section">
       <h2 class="testimonials-title">¿Qué dicen nuestras clientas?</h2>
@@ -258,4 +522,32 @@
 
 @section('scripts')
 <script type="module" src="{{ asset('js/portadaSlider.js') }}"></script>
+<script>
+function openTiendaModal(element) {
+    const modal = document.getElementById('tiendaModal');
+    const modalImg = document.getElementById('imgModalTarget');
+    const img = element.querySelector('img');
+    modal.classList.add('show');
+    modalImg.src = img.src;
+}
+function closeTiendaModal() {
+    const modal = document.getElementById('tiendaModal');
+    modal.classList.remove('show');
+}
+// Close on click outside
+document.getElementById('tiendaModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeTiendaModal();
+    }
+});
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === "Escape") {
+        const modal = document.getElementById('tiendaModal');
+        if (modal.classList.contains('show')) {
+            closeTiendaModal();
+        }
+    }
+});
+</script>
 @endsection

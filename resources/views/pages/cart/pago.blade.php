@@ -56,6 +56,11 @@
                 </label>
 
                 <label style="display: block; margin: 15px 0; font-size: 16px; cursor: pointer;">
+                    <input type="radio" name="payment_method" value="Tarjeta" onclick="mostrarInstrucciones('tarjeta')"> 
+                    <strong>Pagar con Tarjeta (Crédito / Débito)</strong>
+                </label>
+
+                <label style="display: block; margin: 15px 0; font-size: 16px; cursor: pointer;">
                     <input type="radio" name="payment_method" value="Contraentrega" onclick="mostrarInstrucciones('contra')"> 
                     <strong>Pago Contra Entrega (Solo Lima Metropolitana)</strong>
                 </label>
@@ -67,9 +72,9 @@
                 <div id="inst-yape">
                     <h3>Pago con Yape</h3>
                     <p>Escanea el código QR desde tu celular o yapea directamente al número:</p>
-                    <h4><strong>976 553 014</strong></h4>
+                    <h4><strong>977 228 430</strong></h4>
                     <p>Nombre: Nora Edith D.</p>
-                    <img src="{{ asset('assets/img/yape-header.png') }}" class="yape-qr" alt="QR Yape" onerror="this.src='https://via.placeholder.com/200?text=Yape+976553014'">
+                    <img src="{{ asset('assets/img/yape-header.png') }}" class="yape-qr" alt="QR Yape" onerror="this.src='https://via.placeholder.com/200?text=Yape+977228430'">
                 </div>
 
                 <div id="inst-bcp" style="display: none;">
@@ -78,6 +83,14 @@
                     <p><strong>BCP Soles:</strong> 191-XXXXXXXX-X-XX<br>CCI: 002-191-XXXXXXXXX-XX</p>
                     <p><strong>BBVA Soles:</strong> 0011-XXXX-XXXXXXXXXX<br>CCI: 011-XXX-XXXXXXXXXXXX-XX</p>
                     <p>Una vez completado el pago, envíanos el comprobante al correo <strong>lencerianora2026@gmail.com</strong> o vía WhatsApp.</p>
+                </div>
+
+                <div id="inst-tarjeta" style="display: none;">
+                    <h3>Pago con Tarjeta</h3>
+                    <p>Serás redirigido a una pasarela de pagos segura (Mercado Pago / Niubiz) en el siguiente paso para ingresar los datos de tu tarjeta.</p>
+                    <div style="font-size: 24px; color: #555; margin-top: 10px;">
+                        <i class="fab fa-cc-visa"></i> <i class="fab fa-cc-mastercard"></i> <i class="fab fa-cc-amex"></i>
+                    </div>
                 </div>
 
                 <div id="inst-contra" style="display: none;">
@@ -105,6 +118,7 @@
     function mostrarInstrucciones(tipo) {
         document.getElementById('inst-yape').style.display = tipo === 'yape' ? 'block' : 'none';
         document.getElementById('inst-bcp').style.display = tipo === 'bcp' ? 'block' : 'none';
+        document.getElementById('inst-tarjeta').style.display = tipo === 'tarjeta' ? 'block' : 'none';
         document.getElementById('inst-contra').style.display = tipo === 'contra' ? 'block' : 'none';
     }
 

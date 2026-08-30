@@ -28,7 +28,7 @@
       <p>Contáctanos para confirmar el tiempo de tu entrega.</p>
       <div class="whatsapp-line">
         <img src="{{ asset('assets/icons/WhatsApp.png') }}" alt="WhatsApp Marbellin" loading="lazy">
-        <a href="https://wa.me/51976553014" target="_blank" rel="noopener noreferrer">+51 976 553 014</a>
+        <a href="https://wa.me/51977228430" target="_blank" rel="noopener noreferrer">+51 977 228 430</a>
       </div>
     </div>
   </div>

@@ -22,45 +22,72 @@ document.addEventListener("DOMContentLoaded", () => {
   /* -------- Helpers formato -------- */
   const fmt = (n) => n.toLocaleString("es-PE", { style: "currency", currency: "PEN" });
 
-  /* -------- Colores disponibles -------- */
-  const coloresDisponibles = [
-    { nombre: "Azul noche", hex: "#0a1a2f" },
-    { nombre: "Beige",      hex: "#faf0dc" },
-    { nombre: "Blanco",     hex: "#ffffff" },
-    { nombre: "Grape",      hex: "#694784" },
-    { nombre: "Lila",       hex: "#c8a2c8" },
-    { nombre: "Melani",     hex: "#d6d3d1" },
-    { nombre: "Melón",      hex: "#ffe7e0" },
-    { nombre: "Minty Fresh",hex: "#D4F1E3" },
-    { nombre: "Negro",      hex: "#000000" },
-    { nombre: "Neu",        hex: "#004F79" },
-    { nombre: "Palo rosa",  hex: "#a35b67" },
-    { nombre: "Rojo",       hex: "#ff0000" },
-    { nombre: "Rosado",     hex: "#fcd3dc" },
-    { nombre: "Topo",       hex: "#6b6057" },
-    { nombre: "Verde cemento", hex: "#9aa79d" },
-    { nombre: "Vino",       hex: "#5e2129" },
+  /* -------- Colores disponibles y Mapeo de Imágenes -------- */
+  const coloresGlobales = [
+    { nombre: "Azul", hex: "#1d4ed8", slugs: ["_azul.", "-azul."] },
+    { nombre: "Azul noche / Marino", hex: "#0a1a2f", slugs: ["_azul_marino.", "-azul-marino.", "noche"] },
+    { nombre: "Beige / Crema", hex: "#faf0dc", slugs: ["_crema.", "-crema.", "beige"] },
+    { nombre: "Blanco", hex: "#ffffff", slugs: ["_blanco.", "-blanco."] },
+    { nombre: "Borgoña / Vino", hex: "#5e2129", slugs: ["_borgona.", "-borgona.", "vino"] },
+    { nombre: "Durazno / Melón", hex: "#ffe7e0", slugs: ["_durazno.", "-durazno.", "melon"] },
+    { nombre: "Gris / Melani", hex: "#d6d3d1", slugs: ["_gris_claro.", "-gris-claro.", "melani", "gris"] },
+    { nombre: "Lila", hex: "#c8a2c8", slugs: ["_lila.", "-lila."] },
+    { nombre: "Malva / Grape", hex: "#694784", slugs: ["_malva.", "-malva.", "grape"] },
+    { nombre: "Menta", hex: "#D4F1E3", slugs: ["_menta.", "-menta."] },
+    { nombre: "Morado", hex: "#800080", slugs: ["_morado.", "-morado."] },
+    { nombre: "Negro", hex: "#000000", slugs: ["_negro.", "-negro."] },
+    { nombre: "Palo rosa", hex: "#a35b67", slugs: ["_palo_rosa.", "-palo-rosa."] },
+    { nombre: "Rojo", hex: "#ff0000", slugs: ["_rojo.", "-rojo."] },
+    { nombre: "Rosa", hex: "#fcd3dc", slugs: ["_rosa.", "-rosa."] },
+    { nombre: "Topo / Taupe", hex: "#6b6057", slugs: ["_taupe.", "-taupe.", "topo"] },
+    { nombre: "Verde salvia / Cemento", hex: "#9aa79d", slugs: ["_verde_salvia.", "-verde-salvia.", "cemento"] },
+    { nombre: "Neu", hex: "#004F79", slugs: ["_neu.", "-neu."] }
   ];
+
+  // Map images to colors
+  let galleryImages = [];
+  coloresGlobales.forEach(c => c.imgUrl = null);
+
+  imagenesArray.forEach(imgSrc => {
+    const srcLower = imgSrc.toLowerCase();
+    let matchedColor = coloresGlobales.find(c => c.slugs.some(slug => srcLower.includes(slug)));
+    
+    if (matchedColor && !matchedColor.imgUrl) {
+      matchedColor.imgUrl = imgSrc; // Assign image to color
+    } else {
+      galleryImages.push(imgSrc); // If no color matches, it's a gallery image
+    }
+  });
+
+  // If no gallery images exist (all were colors), we can keep the first image as the default main image.
+  const imgPrincipalFinal = galleryImages.length > 0 ? galleryImages[0] : imagenesArray[0] || "";
 
   const tallas = ["XS", "S", "M", "L", "XL", "XXL"];
 
   /* -------- Thumbnails HTML -------- */
-  const thumbsHTML = imagenesArray.map((src, i) => `
+  const thumbsHTML = galleryImages.map((src, i) => `
     <div class="thumbnail-item ${i === 0 ? "active" : ""}" data-index="${i}">
       <img src="${src}" alt="${nombre}">
     </div>
   `).join("");
 
   /* -------- Color swatches -------- */
-  const swatchesHTML = coloresDisponibles.map(c => `
-    <span class="color-swatch" data-color="${c.nombre}" title="${c.nombre}"
+  // Si encontramos variantes de color en las imágenes, SOLO mostramos los colores que tienen imagen para este producto.
+  // Si el producto no tiene variantes de color en sus fotos, mostramos todos los colores globales por defecto.
+  const tieneVariantesImagen = coloresGlobales.some(c => c.imgUrl);
+  const coloresMostrar = tieneVariantesImagen ? coloresGlobales.filter(c => c.imgUrl) : coloresGlobales;
+
+  const swatchesHTML = coloresMostrar.map(c => `
+    <span class="color-swatch" data-color="${c.nombre}" data-img="${c.imgUrl || ""}" title="${c.nombre}"
           style="background-color:${c.hex};${c.hex === "#ffffff" ? "border:2px solid #ddd;" : ""}"></span>
   `).join("");
 
   /* -------- Tallas HTML -------- */
-  const tallasHTML = tallas.map(t => `
-    <button class="talla-btn" data-talla="${t}">${t}</button>
-  `).join("");
+  const tallasData = producto.sizes || { XS: true, S: true, M: true, L: true, XL: true, XXL: true };
+  const tallasHTML = tallas.map(t => {
+      const isAvailable = tallasData[t] !== false;
+      return `<button class="talla-btn ${!isAvailable ? 'disabled' : ''}" data-talla="${t}" ${!isAvailable ? 'disabled aria-disabled="true" style="background:#f1f3f5;color:#ced4da;cursor:not-allowed;border-color:#f1f3f5;" title="Agotado"' : ''}>${t}</button>`;
+  }).join("");
 
   /* -------- Presentaciones HTML -------- */
   const presentacionesHTML = `
@@ -81,9 +108,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <!-- Galería izquierda -->
       <div class="media">
         <div class="img-principal-wrap">
-          <img id="imgPrincipal" src="${imgPrincipal}" alt="${nombre}">
+          <img id="imgPrincipal" src="${imgPrincipalFinal}" alt="${nombre}">
         </div>
-        ${imagenesArray.length > 1 ? `<div class="thumbnails-grid">${thumbsHTML}</div>` : ""}
+        ${galleryImages.length > 1 ? `<div class="thumbnails-grid">${thumbsHTML}</div>` : ""}
       </div>
 
       <!-- Panel derecho -->
@@ -247,7 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
   contenedor.querySelectorAll(".thumbnail-item").forEach(th => {
     th.addEventListener("click", () => {
       imgIndex = +th.dataset.index;
-      imgEl.src = imagenesArray[imgIndex];
+      imgEl.src = galleryImages[imgIndex];
       contenedor.querySelectorAll(".thumbnail-item").forEach(t => t.classList.remove("active"));
       th.classList.add("active");
     });
@@ -302,6 +329,15 @@ document.addEventListener("DOMContentLoaded", () => {
   /* --- Colores --- */
   contenedor.querySelectorAll(".color-swatch").forEach(sw => {
     sw.addEventListener("click", () => {
+      // PREVIEW IMAGEN: Si el color tiene una imagen vinculada, la mostramos.
+      const colorImg = sw.dataset.img;
+      if (colorImg) {
+        imgEl.src = colorImg;
+        // Deseleccionar thumbnails si existieran
+        contenedor.querySelectorAll(".thumbnail-item").forEach(t => t.classList.remove("active"));
+      }
+
+      // LÓGICA DE SELECCIÓN PARA EL CARRITO
       if (!tipoPrecio || tipoPrecio === "docena") return;
       const colorNombre = sw.dataset.color;
       if (sw.classList.contains("seleccionado")) {
